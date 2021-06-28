@@ -2,8 +2,13 @@ package com.bmdb.business;
 
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
+@Entity
 public class Actor {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String firstName;
 	private String lastName;

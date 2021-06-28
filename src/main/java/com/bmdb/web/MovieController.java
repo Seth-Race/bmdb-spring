@@ -1,6 +1,6 @@
 package com.bmdb.web;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,25 +17,25 @@ public class MovieController {
 	private MovieRepo movieRepo;
 	
 	@GetMapping("/")
-	public List<Movie> getAll() {
+	public Iterable<Movie> getAll() {
 		return movieRepo.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Movie get(@PathVariable Integer id) {
-		return movieRepo.getById(id);
+	public Optional<Movie> get(@PathVariable Integer id) {
+		return movieRepo.findById(id);
 	}
 	
 	@PostMapping("/")
 	public Movie add(@RequestBody Movie movie) {
-		 return movieRepo.save(movie);
+		return movieRepo.save(movie);
 	}
 	
 	@PutMapping("/")
 	public Movie update(@RequestBody Movie movie) {
-		 return movieRepo.save(movie);
+		return movieRepo.save(movie);
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable int id) {
 		movieRepo.deleteById(id);
