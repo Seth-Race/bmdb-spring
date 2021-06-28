@@ -94,13 +94,5 @@ public class Actor {
 
 
 
-	@Override
-	public String toString() {
-		return "Actor ID:" + id  +"\t Name: "+ firstName +" "+ lastName +" Gender: "+ gender +" Birthdate: " + birthDate;
-	}
-	
-	public String getName() {
-		return firstName+ " " +lastName;
-	}
-	
+
 }

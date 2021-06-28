@@ -77,10 +77,6 @@ public class Movie {
 		this.director = director;
 	}
 
-	@Override
-	public String toString() {
-		return "ID: " + id + " | Title: " + title + " | Year: " + year + " | Rating: " + rating + " | Director: "
-				+ director;
-	}
+
 
 }
