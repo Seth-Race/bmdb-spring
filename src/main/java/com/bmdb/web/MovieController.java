@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+
 import com.bmdb.business.Movie;
 import com.bmdb.db.MovieRepo;
 
@@ -61,4 +62,12 @@ public class MovieController {
 		return movie;
 	}
 
+	@GetMapping("/rating/get")
+	public Iterable<Movie> getAllByMovieRating(@RequestParam String rating) {
+		if (rating == null || rating.equals("")) {
+			rating = "PG-13";
+		}
+		return movieRepo.findAllByRating(rating);
+	}
+	
 }

@@ -8,31 +8,35 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.bmdb.business.Credit;
+import com.bmdb.business.Movie;
 import com.bmdb.db.CreditRepo;
+import com.bmdb.db.MovieRepo;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api/credits")
 public class CreditController {
-	
+
 	@Autowired
 	private CreditRepo creditRepo;
-	
+	@Autowired
+	private MovieRepo movieRepo;
+
 	@GetMapping("/")
 	public Iterable<Credit> getAll() {
 		return creditRepo.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Optional<Credit> get(@PathVariable Integer id) {
 		return creditRepo.findById(id);
 	}
-	
+
 	@PostMapping("/")
 	public Credit add(@RequestBody Credit credit) {
 		return creditRepo.save(credit);
 	}
-	
+
 	@PutMapping("/")
 	public Credit update(@RequestBody Credit credit) {
 		return creditRepo.save(credit);
@@ -54,5 +58,15 @@ public class CreditController {
 		}
 		return credit;
 	}
-	
+
+	@GetMapping("/movie/{id}")
+	public Iterable<Credit> getAllByMovie(@PathVariable int id) {
+//		Optional<Movie> movie = movieRepo.findById(id); <--goes with other method
+		return creditRepo.findAllByMovieId(id);
+	}
+
+	@GetMapping("/actor/{id}")
+	public Iterable<Credit> getAllByActor(@PathVariable int id) {
+		return creditRepo.findAllByActorId(id);
+	}
 }
