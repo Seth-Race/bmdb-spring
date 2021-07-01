@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.bmdb.business.Credit;
-import com.bmdb.business.Movie;
 import com.bmdb.db.CreditRepo;
-import com.bmdb.db.MovieRepo;
 
 @CrossOrigin
 @RestController
@@ -19,8 +17,6 @@ public class CreditController {
 
 	@Autowired
 	private CreditRepo creditRepo;
-	@Autowired
-	private MovieRepo movieRepo;
 
 	@GetMapping("/")
 	public Iterable<Credit> getAll() {
