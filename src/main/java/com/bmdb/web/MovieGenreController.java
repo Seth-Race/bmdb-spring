@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.bmdb.business.Genre;
 import com.bmdb.business.Movie;
 import com.bmdb.business.MovieGenre;
+import com.bmdb.db.GenreRepo;
 import com.bmdb.db.MovieGenreRepo;
 
 @CrossOrigin
@@ -21,6 +22,8 @@ public class MovieGenreController {
 	
 	@Autowired
 	public MovieGenreRepo movieGenreRepo;
+	@Autowired
+	public GenreRepo genreRepo;
 	
 	@GetMapping("/")
 	public Iterable<MovieGenre> getAll(){
@@ -60,11 +63,9 @@ public class MovieGenreController {
 	}
 
 	@GetMapping("/genre/get")
-	public List<Movie> findAllMovieByGenre(@RequestParam String genre) {
-		if (genre == null || genre.equals("")) {
-			genre = "Comedy";
-		}
-		return movieGenreRepo.findAllMovieByGenre(genre);
+	public List<MovieGenre> getAllByGenreStr(@RequestParam String genreStr) {
+		Genre genre = genreRepo.findByName(genreStr);
+		return movieGenreRepo.findAllMovieByGenreId(genre.getId());
 		
 	}
 
