@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.bmdb.business.Genre;
-import com.bmdb.business.Movie;
 import com.bmdb.business.MovieGenre;
 import com.bmdb.db.GenreRepo;
 import com.bmdb.db.MovieGenreRepo;
